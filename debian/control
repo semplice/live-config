@@ -2,8 +2,6 @@ Source: live-config
 Section: misc
 Priority: optional
 Maintainer: Live Systems Maintainers <debian-live@lists.debian.org>
-Uploaders:
- Daniel Baumann <mail@daniel-baumann.ch>,
 Build-Depends:
  debhelper (>= 9),
  dh-systemd,
