@@ -1,5 +1,5 @@
 .\" live-config(7) - System Configuration Components
-.\" Copyright (C) 2006-2014 Daniel Baumann <mail@daniel-baumann.ch>
+.\" Copyright (C) 2006-2015 Daniel Baumann <mail@daniel-baumann.ch>
 .\"
 .\" This program comes with ABSOLUTELY NO WARRANTY; for details see COPYING.
 .\" This is free software, and you are welcome to redistribute it
@@ -11,7 +11,7 @@
 .\" This file was generated with po4a. Translate the source file.
 .\"
 .\"*******************************************************************
-.TH LIVE\-CONFIG 7 2014\-09\-12 4.0.1\-1 "Projet Live Systems"
+.TH LIVE\-CONFIG 7 2015\-08\-21 5.0~a4\-1 "Projet Live Systems"
 
 .SH NOM
 \fBlive\-config\fP \- Composants de configuration du système
@@ -206,10 +206,11 @@ s'assurer que toutes les variables nécessaires sont réglées pour créer une
 configuration correcte.
 .PP
 Les fichiers de configuration peuvent être placés soit dans la racine du
-système de fichiers (/etc/live/config.conf, /etc/live/config/*), soit sur le
-dispositif live (live/config.conf, live/config/*). Si ces deux endroits sont
-utilisés pour une même option, ceux placés dans le média live ont la
-préséance sur ceux placés dans la racine du système.
+système de fichiers (/etc/live/config.conf, /etc/live/config.conf.d/*.conf),
+soit sur le dispositif live (live/config.conf,
+live/config.conf.d/*.conf). Si ces deux endroits sont utilisés pour une même
+option, ceux placés dans le média live ont la préséance sur ceux placés dans
+la racine du système.
 .PP
 Bien que les fichiers de configuration placés dans les répertoires de
 configuration ne nécessitent pas un nom ou suffixe particulier, il est
@@ -350,6 +351,8 @@ configure l'auto\-login dans slim.
 configure l'auto\-login avec xinit.
 .IP \fBkeyboard\-configuration\fP 4
 configure le clavier.
+.IP \fBsystemd\fP 4
+configure l'auto\-login avec systemd.
 .IP \fBsysvinit\fP 4
 configure sysvinit.
 .IP \fBsysv\-rc\fP 4
@@ -368,15 +371,10 @@ désactive le verrouillage de session par l'économiseur d'écran.
 désactive l'assistant de migration de KDE (squeeze et plus récent).
 .IP \fBkde\-services\fP 4
 désactive des services de KDE non souhaités (squeeze et plus récent).
-.IP \fBdebian\-installer\-launcher\fP 4
-ajoute l'installeur (debian\-installer\-launcher) sur le bureau des
-utilisateurs.
 .IP \fBpolicykit\fP 4
 accorde à l'utilisateur des privilèges via le policykit.
 .IP \fBssl\-cert\fP 4
 regénère les certificats ssl.
-.IP \fBupdate\-notifier\fP 4
-désactive update\-notifier.
 .IP \fBanacron\fP 4
 désactive anacron.
 .IP \fButil\-linux\fP 4
@@ -386,9 +384,7 @@ désactive lastlog.
 .IP \fBxserver\-xorg\fP 4
 configure xserver\-xorg.
 .IP \fBbroadcom\-sta\fP 4
-configures broadcom\-sta WLAN drivers.
-.IP "\fBureadahead\fP (seulement ubuntu)" 4
-désactive ureadahead.
+configure les broadcom\-sta WLAN drivers.
 .IP \fBopenssh\-server\fP 4
 regénère les clés de l'hôte openssh\-server.
 .IP \fBxfce4\-panel\fP 4
@@ -401,9 +397,9 @@ dispositif live, ou sur un serveur http/ftp.
 
 .SH FICHIERS
 .IP \fB/etc/live/config.conf\fP 4
-.IP \fB/etc/live/config/*\fP 4
+.IP \fB/etc/live/config.conf.d/*.conf\fP 4
 .IP \fBlive/config.conf\fP 4
-.IP \fBlive/config/*\fP 4
+.IP \fBlive/config.conf.d/*.conf\fP 4
 .IP \fB/lib/live/config.sh\fP 4
 .IP \fB/lib/live/config/\fP 4
 .IP \fB/var/lib/live/config/\fP 4
