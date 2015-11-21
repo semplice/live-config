@@ -1,3 +1,29 @@
+live-config (5.20151121) UNRELEASED; urgency=medium
+
+  [ Iain R. Learmonth ]
+
+  * debian/source/format:
+   - Changed to "3.0 (native)"
+  * debian/control:
+   - Added myself to uploaders
+   - Updated Vcs-* fields
+   - Updated Homepage field
+
+  [ Raphaël Hertzog ]
+
+  * Added --no-block to systemd script (Closes: #802223)
+
+  [ trebmuh ]
+
+  * Updated French translation of man pages
+
+  [ Daniel Reichelt ]
+
+  * Fixed hook for disabling display managers
+  * Fixed naming of config snippets in manpages
+
+ -- Iain R. Learmonth <irl@debian.org>  Sat, 21 Nov 2015 16:24:22 +0000
+
 live-config (5.0~a5-2) unstable; urgency=low
 
   * Removing myself from uploaders, lost trust in Debian (#804315).
