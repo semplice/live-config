@@ -14,6 +14,9 @@ live-config (5.20160607) unstable; urgency=medium
     tzdata config script is forced to recreate it from /etc/timezone.
     Closes: #816201 Thanks to Gregory DAVID <groolot@groolot.net> for
     the analysis.
+  * Also look for live/config.conf in /lib/live/mount/persistence/*/
+    Closes: #817831 Thanks to Gregory DAVID <groolot@groolot.net>
+    for the patch.
 
  -- Raphaël Hertzog <hertzog@debian.org>  Tue, 07 Jun 2016 16:30:13 +0200
 
