@@ -8,6 +8,8 @@ live-config (5.20160607) unstable; urgency=medium
     used by gdm3). This also gets rid of the undesirable boot delay that
     was likely introduced by one of the above conflicts.
   * Make live-config-systemd the default backend.
+  * Properly handle hwclock set to local time. Closes: #824197
+    Thanks to Tom Jampen <tom@cryptography.ch> for the patch.
 
  -- Raphaël Hertzog <hertzog@debian.org>  Tue, 07 Jun 2016 16:30:13 +0200
 
