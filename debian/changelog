@@ -10,6 +10,10 @@ live-config (5.20160607) unstable; urgency=medium
   * Make live-config-systemd the default backend.
   * Properly handle hwclock set to local time. Closes: #824197
     Thanks to Tom Jampen <tom@cryptography.ch> for the patch.
+  * Fix timezone configuration by dropping /etc/localtime so that
+    tzdata config script is forced to recreate it from /etc/timezone.
+    Closes: #816201 Thanks to Gregory DAVID <groolot@groolot.net> for
+    the analysis.
 
  -- Raphaël Hertzog <hertzog@debian.org>  Tue, 07 Jun 2016 16:30:13 +0200
 

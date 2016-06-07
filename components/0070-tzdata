@@ -47,6 +47,7 @@ Config ()
 	fi
 
 	echo "${_AREA}/${_ZONE}" > /etc/timezone
+	rm -f /etc/localtime
 	dpkg-reconfigure -f noninteractive -p critical tzdata
 
 	# Creating state file
