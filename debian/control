@@ -6,7 +6,7 @@ Priority: optional
 Build-Depends: debhelper (>= 9),
                dh-systemd
 Build-Depends-Indep: lsb-release
-Standards-Version: 3.9.6
+Standards-Version: 3.9.8
 Vcs-Browser: https://anonscm.debian.org/cgit/debian-live/live-config.git
 Vcs-Git: https://anonscm.debian.org/git/debian-live/live-config.git
 Homepage: https://debian-live.alioth.debian.org/live-config/

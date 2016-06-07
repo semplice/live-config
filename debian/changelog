@@ -22,6 +22,7 @@ live-config (5.20160607) unstable; urgency=medium
     Thanks to Lukas Schwaighofer <lukas@schwaighofer.name> for the patch.
   * Drop override and options for XZ compression, it has been the default for
     a while.
+  * Bump Standards-Version to 3.9.8.
 
  -- Raphaël Hertzog <hertzog@debian.org>  Tue, 07 Jun 2016 16:30:13 +0200
 
