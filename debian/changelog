@@ -3,6 +3,8 @@ live-config (5.20160608) UNRELEASED; urgency=medium
   * Replace components/0170-systemd with a systemd generator so that
     we don't reload systemd in the middle of the boot sequence. This
     really fixes the boot delay experienced with systemd 230.
+  * Improve ordering of live-config.service so that it runs after the
+    local filesystems have been mounted.
 
  -- Raphaël Hertzog <hertzog@debian.org>  Wed, 08 Jun 2016 12:38:58 +0200
 
