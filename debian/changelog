@@ -1,5 +1,6 @@
-live-config (5.20160608) UNRELEASED; urgency=medium
+live-config (5.20160608) unstable; urgency=medium
 
+  * Team upload.
   * Replace components/0170-systemd with a systemd generator so that
     we don't reload systemd in the middle of the boot sequence. This
     really fixes the boot delay experienced with systemd 230.
