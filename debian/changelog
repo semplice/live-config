@@ -5,6 +5,8 @@ live-config (5.20160608) UNRELEASED; urgency=medium
     really fixes the boot delay experienced with systemd 230.
   * Improve ordering of live-config.service so that it runs after the
     local filesystems have been mounted.
+  * Rely on dh_systemd_enable to enable the service instead of shipping
+    a basic.target.wants/live-config.service symlink in the package.
 
  -- Raphaël Hertzog <hertzog@debian.org>  Wed, 08 Jun 2016 12:38:58 +0200
 

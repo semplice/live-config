@@ -19,3 +19,6 @@ ConditionKernelCommandLine=boot=live
 Type=oneshot
 RemainAfterExit=yes
 ExecStart=/bin/live-config
+
+[Install]
+WantedBy=basic.target
