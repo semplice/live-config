@@ -89,69 +89,6 @@ install:
 		done; \
 	done
 
-uninstall:
-	# Uninstalling backend
-	rm -f $(DESTDIR)/etc/init.d/live
-	rm -f $(DESTDIR)/etc/init.d/live-config
-	rmdir --ignore-fail-on-non-empty $(DESTDIR)/etc/init.d > /dev/null 2>&1 || true
-	rmdir --ignore-fail-on-non-empty $(DESTDIR)/etc > /dev/null 2>&1 || true
-
-	rm -f $(DESTDIR)/etc/init/live-config.conf
-	rmdir --ignore-fail-on-non-empty $(DESTDIR)/etc/init > /dev/null 2>&1 || true
-	rmdir --ignore-fail-on-non-empty $(DESTDIR)/etc > /dev/null 2>&1 || true
-
-	rm -f $(DESTDIR)/lib/systemd/system/live-config.service
-	rmdir --ignore-fail-on-non-empty $(DESTDIR)/lib/systemd/system > /dev/null 2>&1 || true
-	rmdir --ignore-fail-on-non-empty $(DESTDIR)/lib/systemd > /dev/null 2>&1 || true
-
-	# Uninstalling components
-	rm -rf $(DESTDIR)/lib/live/config
-	rmdir --ignore-fail-on-non-empty $(DESTDIR)/lib/live > /dev/null 2>&1 || true
-	rmdir --ignore-fail-on-non-empty $(DESTDIR)/lib > /dev/null 2>&1 || true
-
-	rmdir --ignore-fail-on-non-empty $(DESTDIR)/var/lib/live/config > /dev/null 2>&1 || true
-	rmdir --ignore-fail-on-non-empty $(DESTDIR)/var/lib/live > /dev/null 2>&1 || true
-	rmdir --ignore-fail-on-non-empty $(DESTDIR)/var/lib > /dev/null 2>&1 || true
-	rmdir --ignore-fail-on-non-empty $(DESTDIR)/var > /dev/null 2>&1 || true
-
-	# Uninstalling shared data
-	rm -rf $(DESTDIR)/usr/share/live/config
-	rmdir --ignore-fail-on-non-empty $(DESTDIR)/usr/share/live
-
-	# Uninstalling docs
-	rm -rf $(DESTDIR)/usr/share/doc/live-config
-	rmdir --ignore-fail-on-non-empty $(DESTDIR)/usr/share/doc > /dev/null 2>&1 || true
-	rmdir --ignore-fail-on-non-empty $(DESTDIR)/usr/share > /dev/null 2>&1 || true
-	rmdir --ignore-fail-on-non-empty $(DESTDIR)/usr > /dev/null 2>&1 || true
-
-	# Uninstalling manpages
-	for MANPAGE in manpages/en/*; \
-	do \
-		SECTION="$$(basename $${MANPAGE} | awk -F. '{ print $$2 }')"; \
-		rm -f $(DESTDIR)/usr/share/man/man$${SECTION}/$$(basename $${MANPAGE} .en.$${SECTION}).$${SECTION}; \
-	done
-
-	for LANGUAGE in $(LANGUAGES); \
-	do \
-		for MANPAGE in manpages/$${LANGUAGE}/*; \
-		do \
-			SECTION="$$(basename $${MANPAGE} | awk -F. '{ print $$3 }')"; \
-			rm -f $(DESTDIR)/usr/share/man/$${LANGUAGE}/man$${SECTION}/$$(basename $${MANPAGE} .$${LANGUAGE}.$${SECTION}).$${SECTION}; \
-		done; \
-	done
-
-	for SECTION in $(ls manpages/en/* | awk -F. '{ print $2 }'); \
-	do \
-		rmdir --ignore-fail-on-non-empty $(DESTDIR)/usr/share/man/man$${SECTION} > /dev/null 2>&1 || true; \
-		rmdir --ignore-fail-on-non-empty $(DESTDIR)/usr/share/man/*/man$${SECTION} > /dev/null 2>&1 || true; \
-	done
-
-	rmdir --ignore-fail-on-non-empty $(DESTDIR)/usr/share/man > /dev/null 2>&1 || true
-	rmdir --ignore-fail-on-non-empty $(DESTDIR)/usr/share > /dev/null 2>&1 || true
-	rmdir --ignore-fail-on-non-empty $(DESTDIR)/usr > /dev/null 2>&1 || true
-
-	rmdir --ignore-fail-on-non-empty $(DESTDIR) > /dev/null 2>&1 || true
-
 clean:
 	@echo "Nothing to clean."
 
