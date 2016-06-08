@@ -2,18 +2,22 @@
 
 ## live-config(7) - System Configuration Components
 ## Copyright (C) 2006-2015 Daniel Baumann <mail@daniel-baumann.ch>
+## Copyright (C) 2016 Raphael Hertzog <hertzog@debian.org>
 ##
 ## This program comes with ABSOLUTELY NO WARRANTY; for details see COPYING.
 ## This is free software, and you are welcome to redistribute it
 ## under certain conditions; see COPYING for details.
 
+set -e
 
-#set -e
+SYSTEMD_DIR=$1
+
+. /lib/live/init-config.sh
 
 Cmdline ()
 {
 	# Reading kernel command line
-	for _PARAMETER in ${LIVE_CONFIG_CMDLINE}
+	for _PARAMETER in $(cat /proc/cmdline)
 	do
 		case "${_PARAMETER}" in
 			live-config.debug|debug)
@@ -37,6 +41,12 @@ Cmdline ()
 
 Init ()
 {
+	# Do nothing if not booted in live mode
+	if ! grep -q "boot=live" /proc/cmdline
+	then
+		exit 0
+	fi
+
 	# Disables both console and graphical autologin.
 	case "${LIVE_CONFIG_NOAUTOLOGIN}" in
 		true)
@@ -51,14 +61,11 @@ Init ()
 			;;
 	esac
 
-	# Checking if package is installed or already configured
-	if [ ! -e /var/lib/dpkg/info/systemd.list ] || \
-	   [ -e /var/lib/live/config/systemd ]
+	# Check if configuration already happened
+	if [ -e $SYSTEMD_DIR/getty@tty1.service.d/live-config_autologin.conf ]
 	then
 		exit 0
 	fi
-
-	echo -n " systemd"
 }
 
 Config ()
@@ -68,29 +75,27 @@ Config ()
 	then
 		for NUMBER in $(seq 1 6)
 		do
-			mkdir -p /etc/systemd/system/getty@tty${NUMBER}.service.d
+			GETTY_SERVICE_D=$SYSTEMD_DIR/getty@tty${NUMBER}.service.d
+			CONF=$GETTY_SERVICE_D/live-config_autologin.conf
+			mkdir -p $GETTY_SERVICE_D
 
-cat > /etc/systemd/system/getty@tty${NUMBER}.service.d/live-config_autologin.conf << EOF
+			cat > $CONF << EOF
 [Service]
 Type=idle
 ExecStart=
 ExecStart=-/sbin/agetty --autologin ${LIVE_USERNAME} --noclear %I \$TERM
 EOF
 
-			case "${LIVE_CONFIG_DEBUG}" in
-				true)
-					echo "TTYVTDisallocate=no" >> /etc/systemd/system/getty@tty${NUMBER}.service.d/live-config_autologin.conf
-					;;
-			esac
+			if [ "${LIVE_CONFIG_DEBUG}" = "true" ]
+			then
+				echo "TTYVTDisallocate=no" >> $CONF
+			fi
 		done
-
-		systemctl --no-block daemon-reload
 	fi
-
-	# Creating state file
-	touch /var/lib/live/config/systemd
 }
 
 Cmdline
 Init
 Config
+
+exit 0
