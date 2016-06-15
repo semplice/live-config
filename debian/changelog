@@ -1,3 +1,9 @@
+live-config (5.20160608+semplice0) unstable; urgency=medium
+
+  * [backend] systemd: do not try to launch live-config before udev
+
+ -- Eugenio Paolantonio (g7) <me@medesimo.eu>  Wed, 15 Jun 2016 09:00:16 +0200
+
 live-config (5.20160608) unstable; urgency=medium
 
   * Team upload.
